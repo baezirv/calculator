@@ -105,9 +105,20 @@
 
 	private static int Exponentiation (int baseValue, int exponent)
 	{
-		int result = baseValue;
-		for(int i = 1; i < exponent; i++){
-			result = result * baseValue;
+		int result;
+		
+		if (exponent == 0) {
+			result = 1;
+		} else if (baseValue == 0) {
+			result = 0;
+		}
+		else {
+			// baseValue is added to result as if was already multiplied
+			result = baseValue;
+		
+			for(int i = 1; i < exponent; i++){
+				result = result * baseValue;
+			}
 		}
 		return result;
 	}

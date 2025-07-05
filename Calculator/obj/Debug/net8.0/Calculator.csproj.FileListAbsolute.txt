@@ -12,3 +12,4 @@ C:\Users\famas\RiderProjects\Calculator\Calculator\obj\Debug\net8.0\refint\Calcu
 C:\Users\famas\RiderProjects\Calculator\Calculator\obj\Debug\net8.0\Calculator.pdb
 C:\Users\famas\RiderProjects\Calculator\Calculator\obj\Debug\net8.0\Calculator.genruntimeconfig.cache
 C:\Users\famas\RiderProjects\Calculator\Calculator\obj\Debug\net8.0\ref\Calculator.dll
+C:\Users\famas\RiderProjects\Calculator\Calculator\obj\Debug\net8.0\Calculator.sourcelink.json
