@@ -2,49 +2,38 @@
 {
 	public static void Main (string[] args)
 	{
-		do {
+		while (true) {
 			Console.WriteLine("Calculator v1.0.0");
 
-			int entryValue1;
-			int entryValue2;
+			var operation = DisplayMenuAndGetOperation();
+			var entryValue1 = ReadValue1FromConsole(operation);
+			var entryValue2 = ReadValue2FromConsole(operation);
 
-			switch (DisplayMenu()) {
+			switch (operation) {
 				case 1:
-					Addition(ReadValue1FromConsole(), ReadValue2FromConsole());
-					Thread.Sleep(1000);
+					Addition(entryValue1, entryValue2);
 					break;
 				case 2:
-					Subtraction(ReadValue1FromConsole(), ReadValue2FromConsole());
-					Thread.Sleep(1000);
+					Subtraction(entryValue1, entryValue2);
 					break;
 				case 3:
-					Multiplication(ReadValue1FromConsole(), ReadValue2FromConsole());
-					Thread.Sleep(1000);
+					Multiplication(entryValue1, entryValue2);
 					break;
 				case 4:
-					Console.WriteLine("Please enter the dividend value");
-					entryValue1 = Convert.ToInt32(Console.ReadLine ());
-					Console.WriteLine("Please enter the divisor value");
-					entryValue2 = Convert.ToInt32(Console.ReadLine ());
 					Division(entryValue1, entryValue2);
-					Thread.Sleep(1000);
 					break;
 				case 5:
-					Console.WriteLine("Please enter the base value");
-					entryValue1 = Convert.ToInt32(Console.ReadLine ());
-					Console.WriteLine("Please enter the exponent");
-					entryValue2 = Convert.ToInt32(Console.ReadLine ());
 					Exponentiation(entryValue1, entryValue2);
-					Thread.Sleep(1000);
 					break;
 				case 6:
 					Environment.Exit(0);
 					break;
 			}
-		} while (true);
+			Thread.Sleep(1000);
+		}
 	}
 
-	private static int DisplayMenu()
+	private static int DisplayMenuAndGetOperation()
 	{
 		Console.WriteLine("Select the operation option number you want to calculate");
 		Console.WriteLine("1. Addition");
@@ -58,15 +47,22 @@
 		return selectedMenuOption;
 	}
 	
-	private static double ReadValue1FromConsole() {
-		Console.WriteLine("Please enter your first value");
+	private static double ReadValue1FromConsole(int operation)
+	{
+		const string OtherOperationMessage = "Please enter your first value";
+		const string DivisionMessage = "Please enter the dividend value";
+		const string ExponentiationMessage = "Please enter base value";
+		Console.WriteLine(operation < 4 ? OtherOperationMessage : operation == 4 ? DivisionMessage : ExponentiationMessage);
 		var entryValue1 = Convert.ToDouble(Console.ReadLine ());
 		return entryValue1;
 	}
 
-	private static double ReadValue2FromConsole()
+	private static double ReadValue2FromConsole(int operation)
 	{
-		Console.WriteLine("Please enter your second value");
+		const string OtherOperationMessage = "Please enter your second value";
+		const string DivisionMessage = "Please enter the divisor value";
+		const string ExponentiationMessage = "Please enter the exponent value";
+		Console.WriteLine(operation < 4 ? OtherOperationMessage : operation == 4 ? DivisionMessage : ExponentiationMessage);
 		var entryValue2 = Convert.ToDouble(Console.ReadLine ());
 		return entryValue2;
 	}
@@ -96,9 +92,9 @@
 		Console.WriteLine($"Result is {divResult}");
 	}
 
-	private static void Exponentiation (int baseValue, int exponent)
+	private static void Exponentiation (double baseValue, double exponent)
 	{
-		int result;
+		double result;
 		
 		if (exponent == 0) {
 			result = 1;
