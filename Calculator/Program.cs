@@ -7,44 +7,18 @@
 
 			int entryValue1;
 			int entryValue2;
-			int result;
-			int selectedMenuOption;
-			Console.WriteLine("Select the operation option number you want to calculate");
-			Console.WriteLine("1. Addition");
-			Console.WriteLine("2. Subtraction");
-			Console.WriteLine("3. Multiplication");
-			Console.WriteLine("4. Division");
-			Console.WriteLine("5. Exponentiation");
-			Console.WriteLine("6. Exit");
 
-			selectedMenuOption = int.Parse(Console.ReadLine ());
-
-			switch (selectedMenuOption) {
+			switch (DisplayMenu()) {
 				case 1:
-					Console.WriteLine("Please enter your first value");
-					entryValue1 = Convert.ToInt32(Console.ReadLine ());
-					Console.WriteLine("Please enter your second value");
-					entryValue2 = Convert.ToInt32(Console.ReadLine ());
-					result = Addition(entryValue1, entryValue2);
-					Console.WriteLine($"Result is {result}");
+					Addition(ReadValue1FromConsole(), ReadValue2FromConsole());
 					Thread.Sleep(1000);
 					break;
 				case 2:
-					Console.WriteLine("Please enter your first value");
-					entryValue1 = Convert.ToInt32(Console.ReadLine ());
-					Console.WriteLine("Please enter your second value");
-					entryValue2 = Convert.ToInt32(Console.ReadLine ());
-					result = Subtraction(entryValue1, entryValue2);
-					Console.WriteLine($"Result is {result}");
+					Subtraction(ReadValue1FromConsole(), ReadValue2FromConsole());
 					Thread.Sleep(1000);
 					break;
 				case 3:
-					Console.WriteLine("Please enter your first value");
-					entryValue1 = Convert.ToInt32(Console.ReadLine ());
-					Console.WriteLine("Please enter your second value");
-					entryValue2 = Convert.ToInt32(Console.ReadLine ());
-					result = Multiplication(entryValue1, entryValue2);
-					Console.WriteLine($"Result is {result}");
+					Multiplication(ReadValue1FromConsole(), ReadValue2FromConsole());
 					Thread.Sleep(1000);
 					break;
 				case 4:
@@ -52,8 +26,7 @@
 					entryValue1 = Convert.ToInt32(Console.ReadLine ());
 					Console.WriteLine("Please enter the divisor value");
 					entryValue2 = Convert.ToInt32(Console.ReadLine ());
-					result = Division(entryValue1, entryValue2);
-					Console.WriteLine($"Result is {result}");
+					Division(entryValue1, entryValue2);
 					Thread.Sleep(1000);
 					break;
 				case 5:
@@ -61,49 +34,69 @@
 					entryValue1 = Convert.ToInt32(Console.ReadLine ());
 					Console.WriteLine("Please enter the exponent");
 					entryValue2 = Convert.ToInt32(Console.ReadLine ());
-					result = Exponentiation(entryValue1, entryValue2);
-					Console.WriteLine($"Result is {result}");
+					Exponentiation(entryValue1, entryValue2);
 					Thread.Sleep(1000);
 					break;
 				case 6:
 					Environment.Exit(0);
 					break;
 			}
-
-			// finish it without math library
-			// add sum, substraction, multiplication, division & power
 		} while (true);
 	}
 
-	private static int Addition (int entryValue1, int entryValue2)
+	private static int DisplayMenu()
 	{
-		int addResult;
-		addResult = entryValue1 + entryValue2;
-		return addResult;
-	}
-
-	private static int Subtraction (int entryValue1, int entryValue2)
-	{
-		int subtractionResult;
-		subtractionResult = entryValue1 - entryValue2;
-		return subtractionResult;
-	}
-
-	private static int Multiplication (int entryValue1, int entryValue2)
-	{
-		int multiplicationResult;
-		multiplicationResult = entryValue1 * entryValue2;
-		return multiplicationResult;
+		Console.WriteLine("Select the operation option number you want to calculate");
+		Console.WriteLine("1. Addition");
+		Console.WriteLine("2. Subtraction");
+		Console.WriteLine("3. Multiplication");
+		Console.WriteLine("4. Division");
+		Console.WriteLine("5. Exponentiation");
+		Console.WriteLine("6. Exit");
+		
+		var selectedMenuOption = int.Parse(Console.ReadLine());
+		return selectedMenuOption;
 	}
 	
-	private static int Division (int dividend, int divisor)
-	{
-		int divResult;
-		divResult = dividend / divisor;
-		return divResult;
+	private static double ReadValue1FromConsole() {
+		Console.WriteLine("Please enter your first value");
+		var entryValue1 = Convert.ToDouble(Console.ReadLine ());
+		return entryValue1;
 	}
 
-	private static int Exponentiation (int baseValue, int exponent)
+	private static double ReadValue2FromConsole()
+	{
+		Console.WriteLine("Please enter your second value");
+		var entryValue2 = Convert.ToDouble(Console.ReadLine ());
+		return entryValue2;
+	}
+
+	private static void Addition (double entryValue1, double entryValue2)
+	{
+		var addResult = entryValue1 + entryValue2;
+		Console.WriteLine($"Result is {addResult}");
+	}
+
+	private static void Subtraction (double entryValue1, double entryValue2)
+	{
+		var subtractionResult = entryValue1 - entryValue2;
+		Console.WriteLine($"Result is {subtractionResult}");
+	}
+
+	private static void Multiplication (double entryValue1, double entryValue2)
+	{
+		var multiplicationResult = entryValue1 * entryValue2;
+		Console.WriteLine($"Result is {multiplicationResult}");
+	}
+	
+	private static void Division (double dividend, double divisor)
+	{
+		double divResult;
+		divResult = dividend / divisor;
+		Console.WriteLine($"Result is {divResult}");
+	}
+
+	private static void Exponentiation (int baseValue, int exponent)
 	{
 		int result;
 		
@@ -120,6 +113,6 @@
 				result = result * baseValue;
 			}
 		}
-		return result;
+		Console.WriteLine($"Result is {result}");
 	}
 }
